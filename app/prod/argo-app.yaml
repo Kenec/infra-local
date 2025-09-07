@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/Kenec/infra.git' 
+    repoURL: 'https://github.com/Kenec/infra-local.git' 
     targetRevision: main    # branch, tag, or commit
     path: 'helm/hello-nginx'            # path in the repo containing manifests/Helm charts
   destination:
