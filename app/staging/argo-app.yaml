@@ -11,7 +11,7 @@ spec:
     path: 'helm/hello-nginx'            # path in the repo containing manifests/Helm charts
   destination:
     server: 'https://kubernetes.default.svc'  # cluster URL (current cluster)
-    namespace: staging                     # target namespace
+    namespace: external-staging                     # target namespace
   syncPolicy:
     automated:
       prune: true           # delete resources that are no longer in Git
