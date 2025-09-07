@@ -1,18 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: nginx-app
+  name: nginx-app-staging
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: 'https://github.com/Kenec/infra-local.git'
-    targetRevision: staging    # branch, tag, or commit
-    path: 'helm/hello-nginx'            # path in the repo containing manifests/Helm charts
+    targetRevision: staging
+    path: 'helm/hello-nginx'
   destination:
-    server: 'https://kubernetes.default.svc'  # cluster URL (current cluster)
-    namespace: staging                     # target namespace
+    server: 'https://kubernetes.default.svc'
+    namespace: external-staging
   syncPolicy:
     automated:
-      prune: true           # delete resources that are no longer in Git
-      selfHeal: true        # automatically sync changes
+      prune: true
+      selfHeal: true

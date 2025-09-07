@@ -6,7 +6,8 @@ NAMESPACE_DIR := infra/local/namespaces
 
 # Default target
 .PHONY: apply
-apply: minikube namespaces argocd
+apply: minikube namespaces argocd staging-argo-app prod-argo-app
+	@echo "=== All resources have been applied ==="
 
 # Step 1: Provision Minikube
 .PHONY: minikube
@@ -20,9 +21,16 @@ argocd:
 	@echo "=== Setting up ArgoCD ==="
 	helm upgrade --install argocd helm/argo-cd --namespace argocd
 
-# 	kubectl create namespace argocd || true
-# 	kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
-# 	kubectl rollout status deployment argocd-server -n argocd	
+
+.PHONY: staging-argo-app
+staging-argo-app:
+	@echo "=== Deploying Staging ArgoApp ==="
+	kubectl apply -f app/staging/argo-app.yaml
+
+.PHONY: prod-argo-app
+prod-argo-app:
+	@echo "=== Deploying Prod ArgoApp ==="
+	kubectl apply -f app/prod/argo-app.yaml
 
 # Step 2: Provision Kubernetes resources (namespaces, etc.)
 .PHONY: namespaces
