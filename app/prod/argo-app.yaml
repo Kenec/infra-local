@@ -9,6 +9,9 @@ spec:
     repoURL: 'https://github.com/Kenec/infra-local.git' 
     targetRevision: main
     path: 'helm/hello-nginx'
+    helm:
+      valueFiles:
+        - prod.values.yaml
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: external-prod

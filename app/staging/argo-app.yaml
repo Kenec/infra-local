@@ -9,6 +9,9 @@ spec:
     repoURL: 'https://github.com/Kenec/infra-local.git'
     targetRevision: staging
     path: 'helm/hello-nginx'
+    helm:
+      valueFiles:
+        - staging.values.yaml 
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: external-staging
